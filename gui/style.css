@@ -1,0 +1,33 @@
+
+button.sudoku-cell {
+    min-width: 48px;
+    min-height: 48px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid #999999;
+    border-radius: 0;
+
+    background-color: #ffffff;
+    color: #222222;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button.sudoku-cell.box-right {
+    border-right: 3px solid #222222;
+}
+
+button.sudoku-cell.box-bottom {
+    border-bottom: 3px solid #222222;
+}
+
+button.sudoku-cell:hover {
+    background-color: #e8efff;
+}
+
+button.sudoku-cell:active {
+    background-color: #cddcff;
+}
