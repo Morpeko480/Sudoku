@@ -20,6 +20,7 @@ val level_hard : unit -> int list
 val solve : board -> int -> board option * int
 val try_candidates : int * int -> int list -> board -> int -> board option * int
 val generate_full_board : unit -> board
-val remove_amount_of_cells : unit -> board
-val generate : unit -> board
+val remove_amount_of_cells : int list -> board
+val generate : int list -> board
 val get_cell : int * int -> board -> int
+val compare : board -> board -> bool

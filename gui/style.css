@@ -1,5 +1,5 @@
 
-button.sudoku-cell {
+entry.sudoku-cell {
     min-width: 48px;
     min-height: 48px;
 
@@ -12,22 +12,85 @@ button.sudoku-cell {
     background-color: #ffffff;
     color: #222222;
 
+    font-size: 25px;
+    font-weight: bold;
+}
+
+entry.sudoku-cell.box-right {
+    border-right: 3px solid #222222;
+}
+
+entry.sudoku-cell.box-bottom {
+    border-bottom: 3px solid #222222;
+}
+
+entry.sudoku-cell:hover {
+    background-color: #e8efff;
+}
+
+entry.sudoku-cell:active {
+    background-color: #cddcff;
+}
+
+entry.mistake {
+    color: red;
+}
+
+entry.correct {
+    color: green;
+}
+button.easy_button {
+    border: 1px solid #000000;
+    border-radius: 0;
+
+    background-color: #73eb7d;
+    color: #5ecf5a;
+
     font-size: 20px;
     font-weight: bold;
 }
 
-button.sudoku-cell.box-right {
-    border-right: 3px solid #222222;
+button.easy_button:hover {
+    background-color: green;
 }
 
-button.sudoku-cell.box-bottom {
-    border-bottom: 3px solid #222222;
+button.medium_button {
+    border: 1px solid #000000;
+    border-radius: 0;
+
+    background-color: #73eb7d;
+    color: #e9be61;
+
+    font-size: 20px;
+    font-weight: bold;
 }
 
-button.sudoku-cell:hover {
-    background-color: #e8efff;
+button.medium_button:hover {
+    background-color: green;
 }
 
-button.sudoku-cell:active {
-    background-color: #cddcff;
+button.hard_button {
+    border: 1px solid #000000;
+    border-radius: 0;
+
+    background-color: #73eb7d;
+    color: #eb6464;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button.hard_button:hover {
+    background-color: green;
+}
+
+button.solve_button {
+    border: 1px solid #000000;
+    border-radius: 0;
+
+    background-color: #73eb7d;
+    color: #000000;
+
+    font-size: 20px;
+    font-weight: bold;
 }

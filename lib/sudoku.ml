@@ -101,85 +101,30 @@ let generate_full_board () =
     | (None, _) -> []
     | (Some solution, _) -> solution
 
-let remove_amount_of_cells () =
+let remove_amount_of_cells level =
   let solved_board = generate_full_board () in
   let all_elements = List.flatten solved_board in
   let indices = List.init 81 (fun i -> i + 1) in
   let coordonated_list = List.combine indices all_elements in
-  let removed_list = List.map (fun (ind, x) -> if List.mem ind (level_hard ()) then 0 else x) coordonated_list in
+  let removed_list = List.map (fun (ind, x) -> if List.mem ind level then 0 else x) coordonated_list in
   split removed_list
 
-let rec generate () = 
-  let board = remove_amount_of_cells () in
+let rec generate difficulty = 
+  let board = remove_amount_of_cells difficulty in
   let solution_counter = snd (solve board 0) in
-  if solution_counter = 1 then board else generate ()
+  if solution_counter = 1 then board else generate difficulty
 
 let get_cell (row, col) board =
   List.nth (List.nth board row) col
-(*
-remove_test:
-  [3; 8; 4; 6; 0; 9; 1; 0; 5]; 
-  [1; 2; 6; 5; 3; 0; 0; 7; 0];
-  [7; 9; 0; 4; 1; 0; 6; 0; 3]; 
-  [0; 4; 9; 0; 8; 1; 2; 5; 7];
-  [5; 3; 8; 7; 0; 6; 0; 0; 0]; 
-  [2; 0; 7; 9; 4; 5; 3; 0; 8];
-  [9; 6; 0; 1; 5; 7; 8; 3; 0]; 
-  [4; 0; 1; 8; 0; 3; 7; 0; 2];
-  [8; 7; 3; 0; 9; 0; 5; 1; 6]]
 
-
-
-
-
-
-let board1 = [
-  [0; 0; 3; 0; 2; 0; 6; 0; 0];
-  [9; 0; 0; 3; 0; 5; 0; 0; 1];
-  [0; 0; 1; 8; 0; 6; 4; 0; 0];
-  [0; 0; 8; 1; 0; 2; 9; 0; 0];
-  [7; 0; 0; 0; 0; 0; 0; 0; 8];
-  [0; 0; 6; 7; 0; 8; 2; 0; 0];
-  [0; 0; 2; 6; 0; 9; 5; 0; 0];
-  [8; 0; 0; 2; 0; 3; 0; 0; 9];
-  [0; 0; 5; 0; 1; 0; 3; 0; 0]
-]
-
-Solution:
-  [4; 8; 3; 9; 2; 1; 6; 5; 7]; 
-  [9; 6; 7; 3; 4; 5; 8; 2; 1];
-  [2; 5; 1; 8; 7; 6; 4; 9; 3]; 
-  [5; 4; 8; 1; 3; 2; 9; 7; 6];
-  [7; 2; 9; 5; 6; 4; 1; 3; 8]; 
-  [1; 3; 6; 7; 9; 8; 2; 4; 5];
-  [3; 7; 2; 6; 8; 9; 5; 1; 4]; 
-  [8; 1; 4; 2; 5; 3; 7; 6; 9];
-  [6; 9; 5; 4; 1; 7; 3; 8; 2]
-
-
-
-
-
-Easy  :
-  [5; 3; 0; 0; 7; 0; 0; 0; 0];
-  [6; 0; 0; 1; 9; 5; 0; 0; 0];
-  [0; 9; 8; 0; 0; 0; 0; 6; 0];
-  [8; 0; 0; 0; 6; 0; 0; 0; 3];
-  [4; 0; 0; 8; 0; 3; 0; 0; 1];
-  [7; 0; 0; 0; 2; 0; 0; 0; 6];
-  [0; 6; 0; 0; 0; 0; 2; 8; 0];
-  [0; 0; 0; 4; 1; 9; 0; 0; 5];
-  [0; 0; 0; 0; 8; 0; 0; 7; 9]]
-
-Solved  :
-
-[ [5; 3; 4; 6; 7; 8; 9; 1; 2]; 
-  [6; 7; 2; 1; 9; 5; 3; 4; 8];
-  [1; 9; 8; 3; 4; 2; 5; 6; 7]; 
-  [8; 5; 9; 7; 6; 1; 4; 2; 3];
-  [4; 2; 6; 8; 5; 3; 7; 9; 1]; 
-  [7; 1; 3; 9; 2; 4; 8; 5; 6];
-  [9; 6; 1; 5; 3; 7; 2; 8; 4]; 
-  [2; 8; 7; 4; 1; 9; 6; 3; 5];
-  [3; 4; 5; 2; 8; 6; 1; 7; 9]]
-*)
+let compare board1 board2 =
+  let flat1 = List.flatten board1 in 
+  let flat2 = List.flatten board2 in
+  let rec cmp f1 f2 = 
+    match f1, f2 with
+    | [], [] -> true
+    | [], _ -> false
+    | _, [] -> false
+    | x :: xs, y :: ys -> if x <> y then false else cmp xs ys
+  in 
+    cmp flat1 flat2 
