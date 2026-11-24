@@ -1,0 +1,68 @@
+
+# ==============================
+# Dune build files
+# ==============================
+_build/
+_install/
+*.install
+
+# ==============================
+# OCaml compiled files
+# ==============================
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.cmxs
+*.cma
+*.cmt
+*.cmti
+*.o
+*.a
+*.annot
+*.byte
+*.native
+
+# ==============================
+# OCaml editor / tooling
+# ==============================
+*.merlin
+.merlin
+.opam-switch/
+
+# ==============================
+# IDEs and editors
+# ==============================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ==============================
+# Operating system files
+# ==============================
+Thumbs.db
+Desktop.ini
+
+# ==============================
+# Logs and temporary files
+# ==============================
+*.log
+*.tmp
+*.bak
+*.old
+
+# ==============================
+# Environment / secrets
+# ==============================
+.env
+.env.*
+!.env.example
+
+# ==============================
+# Test and coverage output
+# ==============================
+coverage/
+lcov.info
